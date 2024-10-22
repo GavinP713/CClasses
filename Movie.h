@@ -1,0 +1,9 @@
+#include <cstring>
+#include "Media.h"
+
+class Movie : public Media {
+ public:
+  char director[];
+  int rating;
+  float duration;
+};

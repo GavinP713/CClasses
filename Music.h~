@@ -1,0 +1,6 @@
+class Music : public Media {
+ public:
+  char artist[];
+  char publisher[];
+  float duration;
+};
