@@ -13,7 +13,7 @@ static int inputlength = 5;
 
 int main() {
   // ???? is this right? maybe but i literally do not know
-  vector<Media>* media = new vector<Media>;
+  vector<Media>* mediaVector = new vector<Media>;
 
   // program loop
   char input[inputlength];
@@ -21,7 +21,7 @@ int main() {
     cin >> input;
 
     if (strcmp(input, "add") == 0) {
-      add();
+      add(mediaVector);
     }
     else if (strcmp(input, "remove") == 0) {
       remove();
@@ -37,24 +37,30 @@ int main() {
   return 0;
 }
 
-void add() {
+void add(Vector<Media>* mediaVector) {
+  Media* media;
   char input[inputlength];
 
-  // Define media type
-  cout << "Movie: 0" << endl;
-  cout << "Game:  1" << endl;
-  cout << "Music: 2" << endl;
+  // prompt for media type
+  cout << "Movie, Game, Music" << endl;
   cout << "Media type: "; cin >> input;
 
+  // set media type
+  // MOVIE
   if (strcmp(input, "0") == 0) {
-    
+    media = new Movie(); 
   }
+  // GAME
   if (strcmp(input, "1") == 0) {
-
+    media = new Game();
   }
+  // MUSIC
   if (strcmp(input, "2") == 0) {
-
+    media = new Music();
   }
+
+  // set data of media
+  media->getinfo();
 }
 
 void remove() {
