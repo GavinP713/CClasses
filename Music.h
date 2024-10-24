@@ -3,7 +3,7 @@
 
 class Music : public Media {
  public:
-  char artist[];
-  char publisher[];
+  char artist[50];
+  char publisher[50];
   float duration;
 };

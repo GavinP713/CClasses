@@ -3,7 +3,7 @@
 
 class Movie : public Media {
  public:
-  char director[];
+  char director[50];
   int rating;
   float duration;
 };

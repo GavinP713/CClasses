@@ -1,9 +1,9 @@
 #include <cstring>
 #include "Media.h"
 
-class Videogame : public Media {
+class Game : public Media {
  public:
-  char publisher[];
+  char publisher[50];
   int rating;
  private:
 };

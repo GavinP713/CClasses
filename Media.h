@@ -1,6 +1,6 @@
 class Media {
  public:
-  char title[];
+  char title[50];
   int year;
  private:
 };
