@@ -1,0 +1,9 @@
+#include <cstring>
+#include "Media.h"
+#include "Movie.h"
+
+using namespace std;
+
+void Movie::getInfo():Media::getInfo() {
+  char input[50];
+}

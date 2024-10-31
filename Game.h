@@ -1,14 +1,13 @@
-#ifndef MUSIC_H
-#define MUSIC_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <cstring>
 #include "Media.h"
 
-class Music : public Media {
+class Game : public Media {
  public:
-  char artist[50];
   char publisher[50];
-  float duration;
+  int rating;
   void getInfo();
 };
 

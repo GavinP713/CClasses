@@ -1,10 +1,18 @@
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 #include "Media.h"
 
 using namespace std;
 
-Media::getInfo() {
-  char input[100];
-  cout << "Title: "; cin >> input; 
-  cout << "Year: "; cin >> input;
+void Media::getInfo() {
+  char input[50];
+  
+  cout << "Title: ";
+  cin >> input;
+  strcpy(Media::title, input);
+  
+  cout << "Year: ";
+  cin >> input;
+  Media::year = atoi(input);
 }
