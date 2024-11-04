@@ -10,10 +10,19 @@ void Game::getInfo() {
   char input[50];
 
   cout << "Publisher: ";
-  cin >> input;
+  cin.getline(input, 50, '\n');
   strcpy(Game::publisher, input);
 
   cout << "Rating: ";
   cin >> input;
   Game::rating = atoi(input);
+
+  cin.ignore();
+}
+
+void Game::printInfo() {
+  cout << "Type: Game" << endl;
+  Media::printInfo();
+  cout << "Publisher: " << Game::publisher << endl;
+  cout << "Rating: " << Game::rating << endl;
 }

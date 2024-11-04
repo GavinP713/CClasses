@@ -10,14 +10,24 @@ void Music::getInfo() {
   char input[50];
 
   cout << "Artist: ";
-  cin >> input;
+  cin.getline(input, 50, '\n');
   strcpy(Music::artist, input);
 
   cout << "Publisher: ";
-  cin >> input;
+  cin.getline(input, 50, '\n');
   strcpy(Music::publisher, input);
 
   cout << "Duration: ";
   cin >> input;
   Music::duration = atof(input);
+
+  cin.ignore();
+}
+
+void Music::printInfo() {
+  cout << "Type: Music" << endl;
+  Media::printInfo();
+  cout << "Artist: " << Music::artist << endl;
+  cout << "Publisher: " << Music::publisher << endl;
+  cout << "Duration: " << Music::duration << endl;
 }

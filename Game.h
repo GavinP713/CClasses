@@ -9,6 +9,7 @@ class Game : public Media {
   char publisher[50];
   int rating;
   void getInfo();
+  void printInfo();
 };
 
 #endif

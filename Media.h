@@ -6,6 +6,7 @@ class Media {
   char title[50];
   int year;
   virtual void getInfo();
+  virtual void printInfo();
 };
 
 #endif

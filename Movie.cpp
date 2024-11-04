@@ -10,7 +10,7 @@ void Movie::getInfo() {
   char input[50];
 
   cout << "Director: ";
-  cin >> input;
+  cin.getline(input, 50, '\n');
   strcpy(Movie::director, input);
 
   cout << "Rating: ";
@@ -20,4 +20,14 @@ void Movie::getInfo() {
   cout << "Duration: ";
   cin >> input;
   Movie::duration = atof(input);
+
+  cin.ignore();
+}
+
+void Movie::printInfo() {
+  cout << "Type: Movie" << endl;
+  Media::printInfo();
+  cout << "Director: " << Movie::director << endl;
+  cout << "Rating: " << Movie::rating << endl;
+  cout << "Duration: " << Movie::duration << endl;
 }

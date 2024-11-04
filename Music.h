@@ -10,6 +10,7 @@ class Music : public Media {
   char publisher[50];
   float duration;
   void getInfo();
+  void printInfo();
 };
 
 #endif
