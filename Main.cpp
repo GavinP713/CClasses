@@ -9,30 +9,30 @@
 using namespace std;
 
 // function prototypes
-void add(vector<Media>*);
-void remove();
-void search(vector<Media>*);
+void add(vector<Media*> &mediaVector);
+void remove(vector<Media*> &mediaVector);
+void search(vector<Media*> mediaVector);
 void help();
 
-static int inputlength = 5;
+static int inputlength = 10;
 
 int main() {
-  vector<Media>* mediaVector = new vector<Media>;
-
   cout << "------ MEDIA LIBRARY ------" << endl;
   
-  // program loop
+  vector<Media*> mediaVector;
   char input[inputlength];
+
+  // program loop
   while (true) {
     cout << "type \"help\" for a list of commands" << endl;
-    
     cin >> input;
-
+    cin.ignore();
+    
     if (strcmp(input, "add") == 0) {
       add(mediaVector);
     }
     else if (strcmp(input, "remove") == 0) {
-      remove();
+      remove(mediaVector);
     }
     else if (strcmp(input, "search") == 0) {
       search(mediaVector);
@@ -53,7 +53,7 @@ int main() {
   return 1;
 }
 
-void add(vector<Media>* mediaVector) {
+void add(vector<Media*> &mediaVector) {
   cout << "---------------------------" << endl;
 
   Media* media;
@@ -83,34 +83,52 @@ void add(vector<Media>* mediaVector) {
   }
   else {
     cout << "Invalid command!" << endl;
+    return;
   }
 
   // set data of media
   media->getInfo();
   cout << "Media added" << endl;
 
+  // add to vector
+  mediaVector.push_back(media);
+
   cout << "---------------------------" << endl;
 }
 
-void remove() {
+void remove(vector<Media*> &mediaVector) {
+  cout << "---------------------------" << endl;
 
+  char input[inputlength];
+  cout << "Remove: ";
+  cin.getline(input, 50, '\n');
+
+  for (int i = 0; i < mediaVector.size(); i++) {
+    if (strcmp(mediaVector[i]->title, input) == 0) {
+      mediaVector.erase(mediaVector.begin() + i);
+      cout << "Removed media" << endl;
+    }
+  }
 }
 
-void search(vector<Media>* mediaVector) {
+void search(vector<Media*> mediaVector) {
+  cout << "---------------------------" << endl;
+
   char input[inputlength];
   char title[50];
   int year;
-  
-  cout << "Search for: " << endl;
+
   cout << " - Title:      0" << endl;
   cout << " - Year:       1" << endl;
   cout << " - Title/Year: 2" << endl;
+  cout << " - All:        3" << endl;
+  cout << "Search for: ";
   cin >> input;
+  cin.ignore();
 
   if (atoi(input) == 0) {
     cout << "enter Title: ";
     cin.getline(title, 50, '\n');
-    cin.ignore();
   }
   else if (atoi(input) == 1) {
     cout << "enter Year: ";
@@ -124,32 +142,46 @@ void search(vector<Media>* mediaVector) {
     cin >> year;
     cin.ignore();
   }
+  else if (atoi(input) == 3) {
+    cout << "printing all" << endl;
+  }
+  else {
+    cout << "Invalid command!" << endl;
+    return;
+  }
+  cout << endl;
 
-  for (int i = 0; i < mediaVector->size(); i++) {
-    Media media = (*mediaVector)[i];
-
+  cout << "Results: " << endl;
+  for (int i = 0; i < mediaVector.size(); i++) {
+    Media* media = mediaVector[i];
+    
     // search for title
     if (atoi(input) == 0) {
       // compare titles
-      if (strcmp(title, media.title) == 0) {
-	media.printInfo();
+      if (strcmp(title, media->title) == 0) {
+	media->printInfo();
       }
     }
     // search for year
     else if (atoi(input) == 1) {
       // compare years
-      if (year == media.year) {
-	media.printInfo();
+      if (year == media->year) {
+	media->printInfo();
       }
     }
     // search for title and year
     else if (atoi(input) == 2) {
       // compare titles and years
-      if (strcmp(title, media.title) == 0 && year == media.year) {
-	media.printInfo();
+      if (strcmp(title, media->title) == 0 && year == media->year) {
+	media->printInfo();
       }
     }
+    // print all
+    else if (atoi(input) == 3) {
+      media->printInfo();
+    }
   }
+  cout << "---------------------------" << endl;
 }
 
 void help() {

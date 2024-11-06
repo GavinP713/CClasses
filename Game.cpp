@@ -21,8 +21,8 @@ void Game::getInfo() {
 }
 
 void Game::printInfo() {
-  cout << "Type: Game" << endl;
+  cout << "Game" << endl;
   Media::printInfo();
-  cout << "Publisher: " << Game::publisher << endl;
-  cout << "Rating: " << Game::rating << endl;
+  cout << "   - Publisher: " << Game::publisher << endl;
+  cout << "   - Rating: " << Game::rating << endl;
 }

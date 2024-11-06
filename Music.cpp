@@ -25,9 +25,9 @@ void Music::getInfo() {
 }
 
 void Music::printInfo() {
-  cout << "Type: Music" << endl;
+  cout << "Music" << endl;
   Media::printInfo();
-  cout << "Artist: " << Music::artist << endl;
-  cout << "Publisher: " << Music::publisher << endl;
-  cout << "Duration: " << Music::duration << endl;
+  cout << "   - Artist: " << Music::artist << endl;
+  cout << "   - Publisher: " << Music::publisher << endl;
+  cout << "   - Duration: " << Music::duration << endl;
 }

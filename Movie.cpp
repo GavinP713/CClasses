@@ -25,9 +25,9 @@ void Movie::getInfo() {
 }
 
 void Movie::printInfo() {
-  cout << "Type: Movie" << endl;
+  cout << "- Movie" << endl;
   Media::printInfo();
-  cout << "Director: " << Movie::director << endl;
-  cout << "Rating: " << Movie::rating << endl;
-  cout << "Duration: " << Movie::duration << endl;
+  cout << "   - Director: " << Movie::director << endl;
+  cout << "   - Rating: " << Movie::rating << endl;
+  cout << "   - Duration: " << Movie::duration << endl;
 }

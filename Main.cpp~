@@ -9,9 +9,9 @@
 using namespace std;
 
 // function prototypes
-void search();
-void remove();
 void add(vector<Media>*);
+void remove();
+void search(vector<Media>*);
 void help();
 
 static int inputlength = 5;
@@ -19,7 +19,7 @@ static int inputlength = 5;
 int main() {
   vector<Media>* mediaVector = new vector<Media>;
 
-  cout << "###### MEDIA LIBRARY ######" << endl;
+  cout << "------ MEDIA LIBRARY ------" << endl;
   
   // program loop
   char input[inputlength];
@@ -35,7 +35,7 @@ int main() {
       remove();
     }
     else if (strcmp(input, "search") == 0) {
-      search();
+      search(mediaVector);
     }
     else if (strcmp(input, "help") == 0) {
       help();
@@ -54,29 +54,31 @@ int main() {
 }
 
 void add(vector<Media>* mediaVector) {
-  cout << "new -----------------------" << endl;
+  cout << "---------------------------" << endl;
 
   Media* media;
   char input[inputlength];
 
   // prompt for media type
   cout << "Types" << endl;
-  cout << " - Movie" << endl;
-  cout << " - Game" << endl;
-  cout << " - Music" << endl;
-  cout << "Media type: "; cin >> input;
-
+  cout << " - movie" << endl;
+  cout << " - game" << endl;
+  cout << " - music" << endl;
+  cout << "Media type: ";
+  cin >> input;
+  cin.ignore();
+  
   // set media type
   // MOVIE
-  if (strcmp(input, "Movie") == 0) {
+  if (strcmp(input, "movie") == 0) {
     media = new Movie(); 
   }
   // GAME
-  else if (strcmp(input, "Game") == 0) {
+  else if (strcmp(input, "game") == 0) {
     media = new Game();
   }
   // MUSIC
-  else if (strcmp(input, "Music") == 0) {
+  else if (strcmp(input, "music") == 0) {
     media = new Music();
   }
   else {
@@ -94,12 +96,64 @@ void remove() {
 
 }
 
-void search() {
+void search(vector<Media>* mediaVector) {
+  char input[inputlength];
+  char title[50];
+  int year;
+  
+  cout << "Search for: " << endl;
+  cout << " - Title:      0" << endl;
+  cout << " - Year:       1" << endl;
+  cout << " - Title/Year: 2" << endl;
+  cin >> input;
 
+  if (atoi(input) == 0) {
+    cout << "enter Title: ";
+    cin.getline(title, 50, '\n');
+    cin.ignore();
+  }
+  else if (atoi(input) == 1) {
+    cout << "enter Year: ";
+    cin >> year;
+    cin.ignore();
+  }
+  else if (atoi(input) == 2) {
+    cout << "enter Title: ";
+    cin.getline(title, 50, '\n');
+    cout << "enter Year: ";
+    cin >> year;
+    cin.ignore();
+  }
+
+  for (int i = 0; i < mediaVector->size(); i++) {
+    Media media = (*mediaVector)[i];
+
+    // search for title
+    if (atoi(input) == 0) {
+      // compare titles
+      if (strcmp(title, media.title) == 0) {
+	media.printInfo();
+      }
+    }
+    // search for year
+    else if (atoi(input) == 1) {
+      // compare years
+      if (year == media.year) {
+	media.printInfo();
+      }
+    }
+    // search for title and year
+    else if (atoi(input) == 2) {
+      // compare titles and years
+      if (strcmp(title, media.title) == 0 && year == media.year) {
+	media.printInfo();
+      }
+    }
+  }
 }
 
 void help() {
-  cout << "commands ------------------" << endl;
+  cout << "---------------------------" << endl;
   cout << "\"add\": add content to the library" << endl;
   cout << "\"remove\": remove content from library" << endl;
   cout << "\"search\": search for content in the library" << endl;

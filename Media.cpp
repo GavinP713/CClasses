@@ -20,6 +20,6 @@ void Media::getInfo() {
 }
 
 void Media::printInfo() {
-  cout << "Title: " << Media::title << endl;
-  cout << "Year: " << Media::title << endl;
+  cout << "   - Title: " << Media::title << endl;
+  cout << "   - Year: " << Media::year << endl;
 }
